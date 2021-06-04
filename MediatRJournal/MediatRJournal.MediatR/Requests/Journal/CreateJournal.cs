@@ -10,7 +10,6 @@ using MediatR;
 
 using MediatRJournal.Data;
 using MediatRJournal.Models.Journals;
-using MediatRJournal.Models.Journals.Entries;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -19,17 +18,22 @@ namespace MediatRJournal.MediatR.Requests.Journal
     public class CreateJournal : IRequest<CreateJournal.CreateJournalResponse>
     {
         #region Properties
+
         public string Title { get; }
+
         #endregion
 
         #region Constructors
+
         public CreateJournal(string title)
         {
             Title = title;
         }
+
         #endregion
 
         #region Handler
+
         // Here we have our handler as an internal class to our request.
         internal class Handler : IRequestHandler<CreateJournal, CreateJournalResponse>
         {
@@ -46,7 +50,7 @@ namespace MediatRJournal.MediatR.Requests.Journal
             {
                 if (await _context.Journals.AnyAsync(x => x.Title == request.Title, cancellationToken))
                 {
-                    return new CreateJournalResponse {Result = CreateJournalResult.Conflict };
+                    return new CreateJournalResponse { Result = CreateJournalResult.Conflict };
                 }
 
                 var newJournal = new Data.Models.Journal
@@ -64,9 +68,11 @@ namespace MediatRJournal.MediatR.Requests.Journal
                 };
             }
         }
+
         #endregion
 
         #region ResponseTypes
+
         public class CreateJournalResponse
         {
             public CreateJournalResult Result { get; internal init; }
@@ -78,6 +84,7 @@ namespace MediatRJournal.MediatR.Requests.Journal
             Success,
             Conflict
         }
+
         #endregion
     }
 }

@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRJournal", "MediatRJournal\MediatRJournal.csproj", "{5E5617D9-FAFD-4144-8DB3-B8E3DE3801D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatRJournal", "MediatRJournal\MediatRJournal.csproj", "{5E5617D9-FAFD-4144-8DB3-B8E3DE3801D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRJournal.MediatR", "MediatRJournal.MediatR\MediatRJournal.MediatR.csproj", "{424458E9-3F91-41DB-AB09-DE968E0AAEDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatRJournal.MediatR", "MediatRJournal.MediatR\MediatRJournal.MediatR.csproj", "{424458E9-3F91-41DB-AB09-DE968E0AAEDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRJournal.Data", "MediatRJournal.Data\MediatRJournal.Data.csproj", "{6721132C-9A98-4882-A087-B1D54B32816C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatRJournal.Data", "MediatRJournal.Data\MediatRJournal.Data.csproj", "{6721132C-9A98-4882-A087-B1D54B32816C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRJournal.Models", "MediatRJournal.Models\MediatRJournal.Models.csproj", "{19B5B0D7-CEE2-4CB8-AFE2-86437825677A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatRJournal.Models", "MediatRJournal.Models\MediatRJournal.Models.csproj", "{19B5B0D7-CEE2-4CB8-AFE2-86437825677A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9648EC35-1B40-4637-92A3-2825FE337A0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRJournal.MediatR.Tests", "MediatRJournal.MediatR.Tests\MediatRJournal.MediatR.Tests.csproj", "{A444F923-8936-4833-A60C-9928AC4422F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{19B5B0D7-CEE2-4CB8-AFE2-86437825677A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19B5B0D7-CEE2-4CB8-AFE2-86437825677A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19B5B0D7-CEE2-4CB8-AFE2-86437825677A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A444F923-8936-4833-A60C-9928AC4422F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A444F923-8936-4833-A60C-9928AC4422F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A444F923-8936-4833-A60C-9928AC4422F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A444F923-8936-4833-A60C-9928AC4422F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A444F923-8936-4833-A60C-9928AC4422F5} = {9648EC35-1B40-4637-92A3-2825FE337A0B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC6D74AE-F8AE-43B4-BF9B-9C148E7F8246}
