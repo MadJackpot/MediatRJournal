@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+using AutoMapper;
+
 using MediatR;
 
 using MediatRJournal.Data;
@@ -32,10 +34,12 @@ namespace MediatRJournal.MediatR.Requests.Journal
         internal class Handler : IRequestHandler<CreateJournal, CreateJournalResponse>
         {
             private readonly JournalContext _context;
+            private readonly IMapper _mapper;
 
-            public Handler(JournalContext context)
+            public Handler(JournalContext context, IMapper mapper)
             {
                 _context = context;
+                _mapper = mapper;
             }
 
             public async Task<CreateJournalResponse> Handle(CreateJournal request, CancellationToken cancellationToken)
@@ -51,11 +55,12 @@ namespace MediatRJournal.MediatR.Requests.Journal
                 };
 
                 _context.Journals.Add(newJournal);
+                await _context.SaveChangesAsync(cancellationToken);
 
                 return new CreateJournalResponse
                 {
                     Result = CreateJournalResult.Success,
-                    Response = new JournalResponse(newJournal.Id, newJournal.Title, new List<EntryResponse>())
+                    Response = _mapper.Map<JournalResponse>(newJournal)
                 };
             }
         }
@@ -64,8 +69,8 @@ namespace MediatRJournal.MediatR.Requests.Journal
         #region ResponseTypes
         public class CreateJournalResponse
         {
-            public CreateJournalResult Result { get; set; }
-            public JournalResponse? Response { get; set; }
+            public CreateJournalResult Result { get; internal init; }
+            public JournalResponse? Response { get; internal init; }
         }
 
         public enum CreateJournalResult
