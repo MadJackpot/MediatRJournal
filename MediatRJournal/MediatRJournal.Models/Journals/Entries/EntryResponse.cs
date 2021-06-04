@@ -4,5 +4,5 @@ using System.Linq;
 
 namespace MediatRJournal.Models.Journals.Entries
 {
-    public record EntryResponse(Guid Id, string Title, string Content);
+    public record EntryResponse(Guid Id, Guid JournalId, string Title, string Content, DateTime CreateDate);
 }

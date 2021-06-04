@@ -20,6 +20,7 @@ namespace MediatRJournal.Data.Configurations
             // Also not required, EFCore is smart enough to auto-generate foreign keys for its list of other data objects.
             builder.HasMany(x => x.Entries)
                 .WithOne()
+                .HasForeignKey(x => x.JournalId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // For our test case, we will make titles of journals unique to have an excuse to work around the problem.

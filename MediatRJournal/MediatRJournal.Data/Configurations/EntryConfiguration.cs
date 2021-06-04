@@ -16,6 +16,10 @@ namespace MediatRJournal.Data.Configurations
             // EFCore will always try and make a property called 'ID' or '{classname}ID' its primary key.
             // No need to do this, but it's just nice to see.
             builder.HasKey(x => x.Id);
+
+            builder.HasIndex(x => new { x.JournalId, x.Title }).IsUnique();
+
+            builder.Property(x => x.CreateDate).HasDefaultValueSql("GETUTCDATE()");
         }
     }
 }
