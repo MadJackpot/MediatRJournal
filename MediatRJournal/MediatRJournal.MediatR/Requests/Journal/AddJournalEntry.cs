@@ -16,14 +16,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediatRJournal.MediatR.Requests.Journal
 {
-    public class AddJournalEntry : IRequest<AddJournalEntryResponse>
+    public class AddJournalEntry : IRequest<AddJournalEntry.AddJournalEntryResponse>
     {
         public Guid JournalId { get; set; }
         public string Title { get; }
         public string Content { get; }
 
-        public AddJournalEntry(string title, string content)
+        public AddJournalEntry(Guid journalId, string title, string content)
         {
+            JournalId = journalId;
             Title = title;
             Content = content;
         }
@@ -68,13 +69,13 @@ namespace MediatRJournal.MediatR.Requests.Journal
             }
         }
 
-        internal class AddJournalEntryResponse
+        public class AddJournalEntryResponse
         {
             public AddJournalEntryResult Result { get; init; }
             public EntryResponse? Response { get; init; }
         }
 
-        internal enum AddJournalEntryResult
+        public enum AddJournalEntryResult
         {
             Success,
             Conflict,

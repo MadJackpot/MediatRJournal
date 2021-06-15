@@ -7,6 +7,7 @@ using MediatR;
 
 using MediatRJournal.MediatR.Requests.Journal;
 using MediatRJournal.Models.Journals;
+using MediatRJournal.Models.Journals.Entries;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,6 +47,21 @@ namespace MediatRJournal.Controllers
             }
 
             return Ok(journal);
+        }
+
+        [HttpPost]
+        [Route("{id:guid}/entry")]
+        public async Task<ActionResult> AddJournalEntry(Guid id, AddJournalEntryRequest request)
+        {
+            var result = await _mediator.Send(new AddJournalEntry(id, request.Title, request.Content));
+
+            return result.Result switch
+            {
+                MediatR.Requests.Journal.AddJournalEntry.AddJournalEntryResult.Success => Ok(result.Response),//CreatedAtAction(nameof),
+                MediatR.Requests.Journal.AddJournalEntry.AddJournalEntryResult.Conflict => new ConflictResult(),
+                MediatR.Requests.Journal.AddJournalEntry.AddJournalEntryResult.NoJournal => new NotFoundResult(),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }
