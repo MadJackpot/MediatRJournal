@@ -49,16 +49,16 @@ namespace MediatRJournal.MediatR.Requests.Journal
                     return new AddJournalEntryResponse { Result = AddJournalEntryResult.NoJournal };
                 }
 
+                if (journal.Entries.Any(x => x.Title == request.Title))
+                {
+                    return new AddJournalEntryResponse { Result = AddJournalEntryResult.Conflict };
+                }
+
                 var newEntry = new Entry
                 {
                     Title = request.Title,
                     Content = request.Content
                 };
-
-                if (journal.Entries.Any(x => x.Title == request.Title))
-                {
-                    return new AddJournalEntryResponse { Result = AddJournalEntryResult.Conflict };
-                }
 
                 journal.Entries.Add(newEntry);
 
