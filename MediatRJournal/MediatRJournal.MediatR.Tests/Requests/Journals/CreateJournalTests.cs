@@ -18,7 +18,7 @@ using Xunit;
 
 namespace MediatRJournal.MediatR.Tests.Requests.Journals
 {
-    public class CreateJournalTests : BaseTest
+    public class CreateJournalTests : BaseTests
     {
         private readonly CreateJournal.Handler _handler;
 

@@ -13,12 +13,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediatRJournal.MediatR.Tests
 {
-    public class BaseTest
+    public class BaseTests
     {
         protected IFixture Fixture { get; init; }
         protected JournalContext Context { get; init; }
+        protected IMapper Mapper { get; init; }
 
-        public BaseTest()
+        public BaseTests()
         {
             Fixture = new Fixture().Customize(new AutoMoqCustomization());
 
@@ -31,8 +32,8 @@ namespace MediatRJournal.MediatR.Tests
             Fixture.Inject(Context);
 
             // Find mapping profiles and add them to configuration
-            var mapper = new Mapper(new MapperConfiguration(mc => mc.AddMaps(typeof(MediatRBase).Assembly)));
-            Fixture.Inject<IMapper>(mapper);
+            Mapper = new Mapper(new MapperConfiguration(mc => mc.AddMaps(typeof(MediatRBase).Assembly)));
+            Fixture.Inject(Mapper);
         }
     }
 }
